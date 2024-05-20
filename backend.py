@@ -61,7 +61,7 @@ class Backend:
     
     def get_14_days_forecast(self) -> dict:
         today = dt.datetime.now()
-        next_14 = list(map(lambda x: x.strftime(format='%Y-%m-%d'), [today + dt.timedelta(days=i) for i in range(1, 15)]))
+        next_14 = list(map(lambda x: x.strftime(format='%Y-%m-%d'), [today + dt.timedelta(days=i) for i in range(1, 15)])) # type: ignore
         
         forecast: List = self.get_forecast()['forecast']['forecastday']
         return {day: {'maxtemp_c': forecast[i]['day']['maxtemp_c'], 'mintemp_c': forecast[i]['day']['mintemp_c'], 'icon': forecast[i]['day']['condition']['icon']} for i, day in enumerate(next_14)}
